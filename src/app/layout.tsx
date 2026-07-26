@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
@@ -14,8 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KKN32 Website",
-  description: "KKN32 Website",
+  title: "KKN Kelompok 32",
+  description:
+    "Website resmi KKN Kelompok 32: program kerja, profil anggota, dan galeri dokumentasi kegiatan.",
 };
 
 export default function RootLayout({
@@ -25,12 +27,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col bg-white text-zinc-900">
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
