@@ -55,3 +55,12 @@ body {
 .animate-lightbox-in {
   animation: lightbox-in 0.25s ease-out forwards;
 }
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
