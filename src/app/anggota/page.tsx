@@ -70,41 +70,48 @@ export default async function AnggotaPage() {
               return (
               <article
                 key={item.id}
-                className="animate-fade-in-up group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+                className="animate-fade-in-up group relative"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                {item.foto_url ? (
-                  <div className="aspect-square overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100">
-                    <img
-                      src={item.foto_url}
-                      alt={item.nama}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                ) : (
-                  <div className="aspect-square overflow-hidden bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                    <span className="text-5xl font-bold text-white/90 select-none">
-                      {initials || "?"}
-                    </span>
-                  </div>
-                )}
+                {/* Glow blob behind card */}
+                <div className="absolute -inset-0.5 rounded-[1.75rem] bg-gradient-to-br from-purple-400 via-pink-400 to-blue-400 opacity-0 blur-lg transition-opacity duration-500 group-hover:opacity-60" />
 
-                <div className="space-y-4 p-6">
-                  <h2 className="text-xl font-bold leading-snug text-gray-900 group-hover:text-purple-600 transition-colors">
-                    {item.nama}
-                  </h2>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-sm font-medium">
-                    <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
-                    </svg>
-                    {item.jurusan}
+                <div className="relative overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 transition-all duration-500 active:scale-[0.98] group-hover:-translate-y-2 group-hover:shadow-2xl">
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    {item.foto_url ? (
+                      <img
+                        src={item.foto_url}
+                        alt={item.nama}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500">
+                        <span className="select-none text-6xl font-bold text-white/90">
+                          {initials || "?"}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Bottom gradient scrim with name + jurusan overlaid on photo */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 p-5">
+                      <h2 className="text-xl font-bold leading-snug text-white drop-shadow-sm">
+                        {item.nama}
+                      </h2>
+                      <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-medium text-white backdrop-blur-md ring-1 ring-white/20">
+                        <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+                        </svg>
+                        {item.jurusan}
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-sm leading-relaxed text-gray-600 line-clamp-3">
-                    {item.deskripsi}
-                  </p>
-                  <div className="pt-2">
-                    <div className="h-1 w-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-500 group-hover:w-full" />
+
+                  <div className="relative space-y-3 p-5">
+                    <div className="absolute left-5 top-0 h-8 w-1 -translate-y-1/2 rounded-full bg-gradient-to-b from-purple-500 to-pink-500" />
+                    <p className="text-sm italic leading-relaxed text-gray-600 line-clamp-3">
+                      &ldquo;{item.deskripsi}&rdquo;
+                    </p>
                   </div>
                 </div>
               </article>

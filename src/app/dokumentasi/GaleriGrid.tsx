@@ -18,30 +18,34 @@ export default function GaleriGrid({ galeri }: { galeri: Dokumentasi[] }) {
           <figure
             key={item.id}
             onClick={() => setSelected(item)}
-            className="animate-fade-in-up group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+            className="animate-fade-in-up group relative cursor-pointer"
             style={{ animationDelay: `${index * 100}ms` }}
           >
-            <div className="aspect-square overflow-hidden bg-gradient-to-br from-cyan-100 to-teal-100">
-              <img
-                src={item.foto_url!}
-                alt={item.judul}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m-3-3h6" />
-                  </svg>
-                  <span className="text-white text-sm font-medium">Lihat Foto</span>
+            <div className="absolute -inset-0.5 rounded-[1.75rem] bg-gradient-to-br from-cyan-400 via-teal-400 to-blue-400 opacity-0 blur-lg transition-opacity duration-500 group-hover:opacity-60" />
+
+            <div className="relative overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 transition-all duration-500 active:scale-[0.98] group-hover:-translate-y-2 group-hover:shadow-2xl">
+              <div className="aspect-square overflow-hidden bg-gradient-to-br from-cyan-100 to-teal-100">
+                <img
+                  src={item.foto_url!}
+                  alt={item.judul}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-x-0 bottom-0 translate-y-full p-4 transition-transform duration-300 group-hover:translate-y-0">
+                  <div className="flex items-center gap-2">
+                    <svg className="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m-3-3h6" />
+                    </svg>
+                    <span className="text-sm font-medium text-white">Lihat Foto</span>
+                  </div>
                 </div>
               </div>
+              <figcaption className="border-t border-gray-100 bg-white px-4 py-3">
+                <h2 className="text-sm font-semibold leading-snug text-gray-900 transition-colors group-hover:text-cyan-600">
+                  {item.judul}
+                </h2>
+              </figcaption>
             </div>
-            <figcaption className="border-t border-gray-100 px-4 py-3 bg-white">
-              <h2 className="text-sm font-semibold leading-snug text-gray-900 group-hover:text-cyan-600 transition-colors">
-                {item.judul}
-              </h2>
-            </figcaption>
           </figure>
         ))}
       </div>

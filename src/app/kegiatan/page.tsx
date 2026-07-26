@@ -70,44 +70,45 @@ export default async function KegiatanPage() {
             {kegiatan.map((item, index) => (
               <article
                 key={item.id}
-                className="animate-fade-in-up group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+                className="animate-fade-in-up group relative"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                {item.foto_url ? (
-                  <div className="aspect-video overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100">
-                    <img
-                      src={item.foto_url}
-                      alt={item.judul}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                ) : (
-                  <div className="aspect-video overflow-hidden bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
-                    <svg className="w-16 h-16 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                )}
+                <div className="absolute -inset-0.5 rounded-[1.75rem] bg-gradient-to-br from-blue-400 via-cyan-400 to-purple-400 opacity-0 blur-lg transition-opacity duration-500 group-hover:opacity-60" />
 
-                <div className="space-y-4 p-6">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                <div className="relative overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-black/5 transition-all duration-500 active:scale-[0.98] group-hover:-translate-y-2 group-hover:shadow-2xl">
+                  <div className="relative aspect-video overflow-hidden">
+                    {item.foto_url ? (
+                      <img
+                        src={item.foto_url}
+                        alt={item.judul}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-500 to-purple-500">
+                        <svg className="h-16 w-16 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
                     <time
                       dateTime={item.tanggal}
-                      className="text-sm font-semibold text-blue-600"
+                      className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-blue-700 shadow-md backdrop-blur-md"
                     >
+                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-blue-500" />
                       {formatTanggal(item.tanggal)}
                     </time>
                   </div>
-                  <h2 className="text-xl font-bold leading-snug text-gray-900 group-hover:text-blue-600 transition-colors">
-                    {item.judul}
-                  </h2>
-                  <p className="text-sm leading-relaxed text-gray-600 line-clamp-3">
-                    {item.deskripsi}
-                  </p>
-                  <div className="pt-2">
-                    <div className="h-1 w-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500 group-hover:w-full" />
+
+                  <div className="space-y-3 p-5">
+                    <h2 className="text-xl font-bold leading-snug text-gray-900 transition-colors group-hover:text-blue-600">
+                      {item.judul}
+                    </h2>
+                    <p className="text-sm leading-relaxed text-gray-600 line-clamp-3">
+                      {item.deskripsi}
+                    </p>
+                    <div className="h-1 w-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-500 group-hover:w-full" />
                   </div>
                 </div>
               </article>
