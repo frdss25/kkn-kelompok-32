@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
@@ -31,6 +32,13 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
+        <footer className="mt-auto bg-white border-t border-zinc-200">
+          <div className="max-w-6xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+            <p className="text-center text-sm text-zinc-600">
+              KKN Kelompok 32 © {new Date().getFullYear()}
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );

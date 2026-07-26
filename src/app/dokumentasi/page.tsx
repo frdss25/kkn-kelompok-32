@@ -16,47 +16,77 @@ export default async function DokumentasiPage() {
   const galeri = dokumentasi.filter((item) => item.foto_url);
 
   return (
-    <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mb-10">
-        <h1 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl">
-          Dokumentasi Kegiatan
-        </h1>
-        <p className="mt-2 text-zinc-600">
-          Galeri foto momen dan aktivitas KKN32.
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-cyan-50 to-white">
+      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-24 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="mb-16 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-100 text-cyan-700 text-sm font-medium mb-6">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+            </svg>
+            Galeri Foto
+          </div>
+          <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-cyan-600 via-teal-600 to-blue-600 bg-clip-text text-transparent mb-4">
+            Dokumentasi Kegiatan
+          </h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Galeri foto momen dan aktivitas KKN Kelompok 32 di Desa Pesantren, Kec. Tambak, Kab. Banyumas
+          </p>
+        </div>
 
-      {error ? (
-        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-red-700">
-          Gagal memuat data dokumentasi. Silakan coba lagi nanti.
-        </div>
-      ) : galeri.length === 0 ? (
-        <div className="rounded-xl border border-zinc-200 bg-zinc-50 px-6 py-12 text-center text-zinc-600">
-          Belum ada foto dokumentasi yang ditampilkan.
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {galeri.map((item) => (
-            <figure
-              key={item.id}
-              className="overflow-hidden rounded-xl border border-zinc-100 bg-white shadow-md transition-shadow hover:shadow-lg"
-            >
-              <div className="aspect-square overflow-hidden bg-zinc-100">
-                <img
-                  src={item.foto_url!}
-                  alt={item.judul}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <figcaption className="border-t border-zinc-100 px-4 py-3">
-                <h2 className="text-sm font-semibold leading-snug text-zinc-900">
-                  {item.judul}
-                </h2>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      )}
-    </main>
+        {error ? (
+          <div className="rounded-2xl border border-red-200 bg-red-50 px-6 py-8 text-center">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-100 flex items-center justify-center">
+              <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.087 0 1.987-.9 1.987-1.987V5.007A1.987 1.987 0 0012 3.013c-1.087 0-1.987.9-1.987 1.987v13.987c0 1.087.9 1.987 1.987 1.987z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-red-700 mb-2">Gagal Memuat Data</h3>
+            <p className="text-red-600">Gagal memuat data dokumentasi. Silakan coba lagi nanti.</p>
+          </div>
+        ) : galeri.length === 0 ? (
+          <div className="rounded-2xl border border-gray-200 bg-white/50 backdrop-blur-sm px-6 py-16 text-center">
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
+              <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-semibold text-gray-700 mb-2">Belum Ada Foto</h3>
+            <p className="text-gray-500">Belum ada foto dokumentasi yang ditampilkan untuk saat ini.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {galeri.map((item, index) => (
+              <figure
+                key={item.id}
+                className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              >
+                <div className="aspect-square overflow-hidden bg-gradient-to-br from-cyan-100 to-teal-100">
+                  <img
+                    src={item.foto_url!}
+                    alt={item.judul}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-white text-sm font-medium">Lihat Foto</span>
+                    </div>
+                  </div>
+                </div>
+                <figcaption className="border-t border-gray-100 px-4 py-3 bg-white">
+                  <h2 className="text-sm font-semibold leading-snug text-gray-900 group-hover:text-cyan-600 transition-colors">
+                    {item.judul}
+                  </h2>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+      </main>
+    </div>
   );
 }
