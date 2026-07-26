@@ -1,5 +1,7 @@
 import { supabase } from "@/lib/supabase";
 
+export const dynamic = "force-dynamic";
+
 type Anggota = {
   id: string;
   nama: string;

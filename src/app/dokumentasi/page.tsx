@@ -1,6 +1,8 @@
 import { supabase } from "@/lib/supabase";
 import GaleriGrid from "./GaleriGrid";
 
+export const dynamic = "force-dynamic";
+
 type Dokumentasi = {
   id: string;
   judul: string;
