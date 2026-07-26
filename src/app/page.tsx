@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import TeamShowcase from "@/components/TeamShowcase";
+import LatestKegiatan from "@/components/LatestKegiatan";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -181,6 +182,7 @@ export default function Home() {
         </div>
       </main>
 
+      <LatestKegiatan />
       <TeamShowcase />
 
       <style jsx>{`
