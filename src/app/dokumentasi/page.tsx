@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import GaleriGrid from "./GaleriGrid";
 
 type Dokumentasi = {
   id: string;
@@ -55,36 +56,7 @@ export default async function DokumentasiPage() {
             <p className="text-gray-500">Belum ada foto dokumentasi yang ditampilkan untuk saat ini.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {galeri.map((item, index) => (
-              <figure
-                key={item.id}
-                className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className="aspect-square overflow-hidden bg-gradient-to-br from-cyan-100 to-teal-100">
-                  <img
-                    src={item.foto_url!}
-                    alt={item.judul}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <div className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                      </svg>
-                      <span className="text-white text-sm font-medium">Lihat Foto</span>
-                    </div>
-                  </div>
-                </div>
-                <figcaption className="border-t border-gray-100 px-4 py-3 bg-white">
-                  <h2 className="text-sm font-semibold leading-snug text-gray-900 group-hover:text-cyan-600 transition-colors">
-                    {item.judul}
-                  </h2>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <GaleriGrid galeri={galeri} />
         )}
       </main>
     </div>

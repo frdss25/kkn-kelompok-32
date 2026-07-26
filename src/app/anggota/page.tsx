@@ -57,10 +57,19 @@ export default async function AnggotaPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {anggota.map((item, index) => (
+            {anggota.map((item, index) => {
+              const initials = item.nama
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map((word) => word[0]?.toUpperCase())
+                .join("");
+
+              return (
               <article
                 key={item.id}
-                className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className="animate-fade-in-up group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 {item.foto_url ? (
                   <div className="aspect-square overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100">
@@ -73,9 +82,9 @@ export default async function AnggotaPage() {
                   </div>
                 ) : (
                   <div className="aspect-square overflow-hidden bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                    <svg className="w-20 h-20 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
+                    <span className="text-5xl font-bold text-white/90 select-none">
+                      {initials || "?"}
+                    </span>
                   </div>
                 )}
 
@@ -97,7 +106,8 @@ export default async function AnggotaPage() {
                   </div>
                 </div>
               </article>
-            ))}
+              );
+            })}
           </div>
         )}
       </main>

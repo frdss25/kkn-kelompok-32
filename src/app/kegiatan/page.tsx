@@ -68,7 +68,7 @@ export default async function KegiatanPage() {
             {kegiatan.map((item, index) => (
               <article
                 key={item.id}
-                className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                className="animate-fade-in-up group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {item.foto_url ? (
